@@ -1,0 +1,33 @@
+--accomodation: cu urmatoarele  coloane:
+CREATE TABLE accomodation(
+	id INT NOT NULL,
+	type VARCHAR(32),
+	bed_time VARCHAR(32),
+	max_guests INT,
+	description VARCHAR(512),
+	PRIMARY KEY(id) 
+);
+
+-- room_fair: cu urmatoarele coloane
+CREATE TABLE room_fair(
+	id INT NOT NULL,
+	value FLOAT,
+	season VARCHAR(32),
+	PRIMARY KEY(id)
+);
+
+-- accomodation_fair_relation: cu urmatoarele coloane:
+CREATE TABLE accomodation_fair_relation(
+	id INT NOT NULL,
+	id_accomodation INT, 
+	id_room_fair INT,
+	PRIMARY KEY(id),
+	FOREIGN KEY(id_accomodation) REFERENCES accomodation(id),
+	FOREIGN KEY(id_room_fair) REFERENCES room_fair(id)
+);
+ 
+	
+	
+	
+	
+	
