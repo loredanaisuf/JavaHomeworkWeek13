@@ -1,9 +1,6 @@
 package ro.siit;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Database {
 
@@ -56,5 +53,20 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void select(){
+        final String format = "%20s%20s\n";
+        try {
+            Statement st = conection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT acc.id, r.value FROM accomodation acc join accomodation_fair_relation ON acc.id = accomodation_fair_relation.id_accomodation join room_fair r ON accomodation_fair_relation.id_room_fair = r.id");
+            System.out.format(format, "Room", "Value");
+            while(rs.next()){
+                System.out.format(format, rs.getString("id"), rs.getDouble("value"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

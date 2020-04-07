@@ -9,12 +9,26 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+    Database database = new Database();
+
     @Test
-    public void shouldAnswerWithTrue()
+    public void insertIntoAccomodationTest()
     {
-        assertTrue( true );
+        database.insertIntoAccomodation(3, "fndx", "double", 30, "fbdsbfdfdvsnnjdnf");
+    }
+
+    @Test
+    public void insertIntoRoomFairTest(){
+        database.insertIntoRoomFair(30, (float) 60.5, "hbjsmmd");
+    }
+
+    @Test
+    public void insertIntoAccomodationFairRelationTest(){
+        database.insertIntoAccomodationFairRelation(5, 3,30);
+    }
+
+    @Test
+    public void selectTest(){
+        database.select();
     }
 }
