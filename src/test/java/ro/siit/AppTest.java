@@ -12,20 +12,14 @@ public class AppTest
     Database database = new Database();
 
     @Test
-    public void insertIntoAccomodationTest()
+    public void insertTest()
     {
-        database.insertIntoAccomodation(3, "fndx", "double", 30, "fbdsbfdfdvsnnjdnf");
+        //int id_acc = sequence_acc.nextval;
+        database.insertIntoAccomodation(100, "fndx", "double", 30, "fbdsbfdfdvsnnjdnf");
+        database.insertIntoRoomFair(200, (float) 60.5, "hbjsmmd");
+        database.insertIntoAccomodationFairRelation(500, 100,200);
     }
 
-    @Test
-    public void insertIntoRoomFairTest(){
-        database.insertIntoRoomFair(30, (float) 60.5, "hbjsmmd");
-    }
-
-    @Test
-    public void insertIntoAccomodationFairRelationTest(){
-        database.insertIntoAccomodationFairRelation(5, 3,30);
-    }
 
     @Test
     public void selectTest(){
