@@ -19,7 +19,7 @@ public class AppTest
         //int id_acc = sequence_acc.nextval;
         database.insertIntoAccomodation( "type", "double", 90, "description");
         int idAccomodation = database.getIdAccomodation();
-        database.insertIntoRoomFair((float) 100, "spring");
+        database.insertIntoRoomFair((float) 100, "s");
         int idRoom = database.getIdRoom();
         database.insertIntoAccomodationFairRelation(idAccomodation,idRoom);
     }
