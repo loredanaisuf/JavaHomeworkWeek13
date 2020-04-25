@@ -17,38 +17,71 @@ public class Database {
         }
     }
 
-    public void insertIntoAccomodation(int id, String type, String bed_type, int max_guests, String description){
+    public void insertIntoAccomodation(String type, String bed_type, int max_guests, String description){
         try {
-            PreparedStatement ps = conection.prepareStatement("INSERT INTO accomodation(id, type, bed_type, max_guests, description) VALUES(?,?,?,?,?) ");
-            ps.setInt(1, id);
-            ps.setString(2, type);
-            ps.setString(3, bed_type);
-            ps.setInt(4, max_guests);
-            ps.setString(5, description);
+            PreparedStatement ps = conection.prepareStatement("INSERT INTO accomodation VALUES(nextval('sequence_acc'),?,?,?,?) ");
+            ps.setString(1, type);
+            ps.setString(2, bed_type);
+            ps.setInt(3, max_guests);
+            ps.setString(4, description);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void insertIntoRoomFair(int id, float value, String season){
+    public int getIdAccomodation(){
+        int id=-1;
+        try {
+            Statement st = conection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT id FROM accomodation ");
+            boolean hasResults = rs.next();
+            if(hasResults){
+                do{
+                    id=rs.getInt("id");
+                }while(rs.next());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public void insertIntoRoomFair(float value, String season){
         try{
-            PreparedStatement ps = conection.prepareStatement("INSERT INTO room_fair(id, value, season) VALUES(?,?,?)");
-            ps.setInt(1, id);
-            ps.setFloat(2, value);
-            ps.setString(3, season);
+            PreparedStatement ps = conection.prepareStatement("INSERT INTO room_fair VALUES(nextval('sequence_room'),?,?)");
+            ps.setFloat(1, value);
+            ps.setString(2, season);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void insertIntoAccomodationFairRelation(int id, int id_accomodation, int id_room_fair){
+    public int getIdRoom(){
+        int id=-1;
+        try {
+            Statement st = conection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT id FROM room_fair ");
+            boolean hasResults = rs.next();
+            if(hasResults){
+                do{
+                    id=rs.getInt("id");
+                }while(rs.next());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public void insertIntoAccomodationFairRelation(int id_accomodation, int id_room_fair){
         try{
-            PreparedStatement ps = conection.prepareStatement("INSERT INTO accomodation_fair_relation(id, id_accomodation, id_room_fair) VALUES(?,?,?)");
-            ps.setInt(1, id);
-            ps.setInt(2, id_accomodation);
-            ps.setInt(3, id_room_fair);
+            PreparedStatement ps = conection.prepareStatement("INSERT INTO accomodation_fair_relation VALUES(nextval('sequence_relation'),?,?)");
+            ps.setInt(1, id_accomodation);
+            ps.setInt(2, id_room_fair);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

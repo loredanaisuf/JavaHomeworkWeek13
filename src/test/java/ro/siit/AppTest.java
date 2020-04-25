@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.sql.ResultSet;
+
 /**
  * Unit test for simple App.
  */
@@ -15,9 +17,11 @@ public class AppTest
     public void insertTest()
     {
         //int id_acc = sequence_acc.nextval;
-        database.insertIntoAccomodation(100, "fndx", "double", 30, "fbdsbfdfdvsnnjdnf");
-        database.insertIntoRoomFair(200, (float) 60.5, "hbjsmmd");
-        database.insertIntoAccomodationFairRelation(500, 100,200);
+        database.insertIntoAccomodation( "type", "double", 90, "description");
+        int idAccomodation = database.getIdAccomodation();
+        database.insertIntoRoomFair((float) 100, "spring");
+        int idRoom = database.getIdRoom();
+        database.insertIntoAccomodationFairRelation(idAccomodation,idRoom);
     }
 
 
